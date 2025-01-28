@@ -7,6 +7,8 @@ const router = Router();
 
 router.get('/get', MeterController.get);
 
+router.get('/get/const',MeterController.getConstraints);
+
 router.post('/insert', MeterController.insert);
 
 // router.post('/insert/file', MeterController.insertFromFile);

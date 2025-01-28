@@ -7,6 +7,7 @@ import Home from '../components/Home'
 import Insert from '../pages/Insert'
 import Get from '../pages/Get'
 import Delete from '../pages/Delete'
+import GetConstraints from '../pages/getConstraints'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -20,6 +21,7 @@ function App() {
           <Route path='/get' element={<Get />} />          
           {/* <Route path='/get/req' element={<GetReq />} />           */}
           <Route path='/delete' element={<Delete />} />          
+          <Route path='/getc' element={<GetConstraints />} />          
         </Routes>
       </BrowserRouter>
     </>
