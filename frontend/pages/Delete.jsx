@@ -44,7 +44,7 @@ const Delete = () => {
                     value={inputData.meterId}
                     className="bg-slate-200 focus:outline-0 px-2 py-1 rounded-xl"/>
                     <br/>
-                    Date:<input name='date' type='datetime-local' 
+                    Date:<input name='date' type='text' 
                     onChange={handleChange}
                     value={inputData.date}
                     className="bg-slate-200 focus:outline-0 ml-9 m-2 px-2 py-1 rounded-xl"  />
