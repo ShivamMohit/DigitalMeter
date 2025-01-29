@@ -19,12 +19,7 @@ class MeterController {
       return res.status(400).send("All fields are required");
     }
 
-    console.log(date);
-
     const id = `${meterId}_${date}`;
-
-    console.log(id);
-
 
     try {
       const existingData = await MeterData.findById({ _id: id });
@@ -56,42 +51,35 @@ class MeterController {
   };
 
   delete = async (req, res) => {
-    const { meterId, date } = req.body;
+    const { meterId, fromDate, toDate } = req.body;
 
-    if (!meterId || !date) {
+    if (!meterId || !fromDate || !toDate) {
       return res
         .status(400)
         .send({ message: "All fields (meterId and date) are required." });
     }
 
-    const id = `${meterId}_${date}`;
+    const fromId = `${meterId}_${fromDate}`;
+    const toId = `${meterId}_${toDate}`;
 
     try {
-      const existingData = await MeterData.findById(id);
+      const response = await MeterData.deleteMany({
+        _id: {
+          $gte: fromId,
+          $lte: toId
+        },
+      });
+      console.log(response);
 
-      if (!existingData) {
-        return res.status(404).send({ message: "Meter data not found." });
-      }
-
-      const response = await MeterData.deleteOne({ _id: id });
-
-      if (response.deletedCount > 0) {
-        return res.status(200).send({ message: "Data deleted successfully." });
-      } else {
-        return res.status(500).send({ message: "Error while deleting data." });
-      }
     } catch (error) {
-      console.error("Error in deleting data:", error);
-      return res
-        .status(500)
-        .send({ message: "Error in deleting data.", error: error.message });
+      res.status(501).send("Error is deleting data: ", error);
     }
   };
 
   getConstraints = async (req, res) => {
     const { meterId, fromDate, toDate } = req.query;
-    console.log(fromDate);
-    if (meterId) {
+
+    if (meterId && fromDate && toDate) {
       const fromId = `${meterId}_${fromDate}`;
       const toId = `${meterId}_${toDate}`;
 
@@ -103,6 +91,15 @@ class MeterController {
           },
         });
         return res.status(200).send(results);
+      } catch (error) {
+        return res.status(500).send("Error in fetching result", error);
+      }
+    } else if (meterId) {
+      try {
+        const results = await MeterData.find({ meterId: meterId });
+
+        return res.status(200).send(results);
+
       } catch (error) {
         return res.status(500).send("Error in fetching result", error);
       }
@@ -121,10 +118,6 @@ class MeterController {
 
       return res.status(500).send("Error in fetching result", error);
     }
-
-
-
-
   }
 }
 

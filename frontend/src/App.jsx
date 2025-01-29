@@ -8,6 +8,7 @@ import Insert from '../pages/Insert'
 import Get from '../pages/Get'
 import Delete from '../pages/Delete'
 import GetConstraints from '../pages/getConstraints'
+import UploadFile from '../pages/UploadFile'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -22,6 +23,7 @@ function App() {
           {/* <Route path='/get/req' element={<GetReq />} />           */}
           <Route path='/delete' element={<Delete />} />          
           <Route path='/getc' element={<GetConstraints />} />          
+          <Route path='/upload' element={<UploadFile />} />          
         </Routes>
       </BrowserRouter>
     </>

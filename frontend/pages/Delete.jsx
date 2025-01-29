@@ -4,7 +4,8 @@ import axios from "axios";
 const Delete = () => {
   const [inputData, setInputData] = useState({
     meterId: '',
-    date: ''
+    fromDate: '',
+    toDate:''
   });
 
   const [responseMess, setResponseMess] = useState('');
@@ -20,7 +21,7 @@ const Delete = () => {
     e.preventDefault();
     try {
       const response = await axios.delete('http://localhost:3000/meter/delete', {
-        data: inputData
+        data: inputData,
       });
       setResponseMess(response.data.message || "Data deleted");
       console.log(response);
@@ -49,12 +50,25 @@ const Delete = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+          <label htmlFor="fromDate" className="block text-sm font-medium text-gray-700 mb-1">From Date</label>
           <input
-            id="date"
-            name="date"
+            id="fromDate"
+            name="fromDate"
             onChange={handleChange}
-            value={inputData.date}
+            value={inputData.fromDate}
+            max={inputData.toDate}
+            type="datetime-local"
+            className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter Date"
+          />
+
+          <label htmlFor="toDate" className="block text-sm font-medium text-gray-700 mb-1">To Date</label>
+          <input
+            id="toDate"
+            name="toDate"
+            onChange={handleChange}
+            value={inputData.toDate}
+            min={inputData.fromDate}
             type="datetime-local"
             className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter Date"

@@ -11,8 +11,6 @@ router.get('/get/const',MeterController.getConstraints);
 
 router.post('/insert', MeterController.insert);
 
-// router.post('/insert/file', MeterController.insertFromFile);
-
 router.delete('/delete', MeterController.delete);
 
 export default router;

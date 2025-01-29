@@ -1,43 +1,3 @@
-// // import React from 'react'
-// import { useNavigate } from "react-router-dom";
-
-// export default function Home() {
-//     const navigate = useNavigate();
-//     const handleInsert = () => {
-//         // e.preventDefault();
-//         navigate('/insert');        
-//     }
-
-//     const handleGet = () =>{
-//         navigate('/get');
-//     }
-//     const handleGetCons = () =>{
-//         navigate('/getc');
-//     }
-//     const handleDelete = () =>{
-//         navigate('/delete');
-//     }
-
-//   return (
-//     <>
-//         <div>
-//             <div className=''>
-//                 <button className='m-2'
-//                 onClick={handleInsert}
-//                 >Insert</button>
-//                 <button className='m-2'
-//                 onClick={handleGet}
-//                 >Get</button>
-//                 <button className='m-2'
-//                 onClick={handleGetCons}
-//                 >Get Contraints</button>
-//                 <button className='m-2' onClick={handleDelete}>Delete</button>
-//                 <button className='m-2'> Update</button>
-//             </div>
-//         </div>
-//     </>
-//   )
-// }
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
@@ -58,6 +18,9 @@ export default function Home() {
   const handleDelete = () => {
     navigate('/delete');
   };
+  const handleUpload = () => {
+    navigate('/upload');
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -76,14 +39,14 @@ export default function Home() {
             onClick={handleGet}
             className="w-full py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition duration-200"
           >
-            Get
+            Graph
           </button>
           
           <button
             onClick={handleGetCons}
             className="w-full py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition duration-200"
           >
-            Get Constraints
+            Get
           </button>
           
           <button
@@ -94,10 +57,13 @@ export default function Home() {
           </button>
 
           <button
+            onClick={handleUpload}
             className="w-full py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition duration-200"
           >
-            Update
+            Upload
           </button>
+
+          
         </div>
       </div>
     </div>
